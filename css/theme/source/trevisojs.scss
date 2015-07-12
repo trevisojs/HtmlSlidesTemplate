@@ -1,0 +1,55 @@
+/**
+ * White theme for reveal.js. This is the opposite of the 'black' theme.
+ *
+ * Copyright (C) 2015 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../../lib/font/pix-chicago/pix-chicago.css);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #333;
+$headingColor: #fdb569;
+
+$mainFontSize: 38px;
+$mainFont: 'Source Sans Pro', Helvetica, sans-serif;
+$headingFont: 'Source Sans Pro', Helvetica, sans-serif;
+$slideTitleFont: 'pixChicago', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 600;
+$linkColor: #8984ed;
+$linkColorHover: lighten( $linkColor, 15% );
+$selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$heading1Size: 1.8em;
+$heading2Size: 1.6em;
+$heading3Size: 1.3em;
+$heading4Size: 1.0em;
+
+
+.reveal .slides > section {
+    &.title-slide {
+        background-color: transparent;
+        h1 {
+            color: #fff;
+            font-family: $slideTitleFont;
+        }
+    }
+}
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
