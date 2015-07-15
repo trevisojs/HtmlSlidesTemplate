@@ -42,134 +42,410 @@
 			<div class="slides">
 				<section class="title-slide" data-background="#717cfa" data-markdown>
 					<script type="text/template">
-                        #titolo presentazione
+                        ##Treviso   JS Meetup:
+                        #Cattive abitudini e Linee guida
                     </script>
 				</section>
 
                 <section class="title-slide" data-background="#fd7c5b" data-markdown>
                     <script type="text/template">
-                        #titolo sezione
+                        #Anti-patterns
+                        ##(ovvero situazioni da evitare)
                     </script>
                 </section>
 
-				<section data-markdown>
-                    <script type="text/template">
-                        ##Titolo paragrafo
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam similique, explicabo veritatis in quos, quae commodi beatae non aliquid culpa perferendis cum cumque. Natus, neque iure, accusamus repellat explicabo atque!
-                    </script>
-				</section>
-
-                <section>
-                    <h2>Esempio codice</h2>
-                    <pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
+				<section>
+                    <section>
+                        <h2>Dichiarare variabili senza il "var"</h2>
+                    </section>
+                    <section>
+                        <h3 class="bad">Da evitare!</h3>
+                        <pre><code data-trim contenteditable>
+    name="Paperino";
+                        </code></pre>
+                        <pre><code data-trim contenteditable>
+function stampaPaperino() {
+  name ="Paperino";
+  console.log(name);
 }
-                    </code></pre>
-                </section>
+                        </code></pre>
+                        Dichiarando variabili senza il var, automaticamente andiamo a definirle come Globali.
+                    </section>
+                    <section>
+                        <h3 class="good">Corretto!</h3>
+                        <pre><code data-trim contenteditable>
+    var name="Paperino";
+                        </code></pre>
+                        <pre><code data-trim contenteditable>
+function stampaPaperino() {
+  var name ="Paperino";
+  console.log(name);
+}
+                        </code></pre>
+                        Utilizzando il "var", lo scope (ambiente dove vive la variabile) diventa quello della funzione in cui è definita.
+                    </section>
 
-                <section data-markdown>
-                    <script type="text/template">
-                        ##Lista
-                        - item1
-                        - item2
-                        - item3
-                    </script>
+				</section>
+
+                <section>
+                    <section>
+                        <h2>var a = b = 0;</h2>
+                    </section>
+                    <section>
+                        <h3 class="bad">Da evitare!</h3>
+                        In questo caso l'interprete riscrive il codice in questo modo:
+                        <pre><code data-trim contenteditable>
+b = 0;
+var a = b;
+                        </code></pre>
+                        quindi "b" è globale.
+                    </section>
+                    <section>
+                        <h3 class="good">Corretto!</h3>
+                        <pre><code data-trim contenteditable>
+var a = 0,
+    b = 0;
+                        </code></pre>
+                        Questo pattern prevede di dichiarare tutte le variabili utilizzando un solo "var".
+                    </section>
+
                 </section>
 
                 <section>
-                    <h2>Citazioni</h2>
-                    <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-                        &ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-                        reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-                    </blockquote>
+                    <section>
+                        <h2>Sparpagliare variabili all'interno di una funzione</h2>
+                    </section>
+                    <section>
+                        <h3 class="bad">Da evitare!</h3>
+                        <pre><code data-trim contenteditable>
+function plutoAiutaPaperino() {
+    var pluto = new Pluto();
+    pluto.corre();
+    pluto.mangia();
+    ...
+    var paperino = new Paperino();
+    pluto.aiuta(paperino);
+}
+                        </code></pre>
+                        "pluto" e "paperino" sono dichiarate in due momenti separati all'interno della funzione.
+                    </section>
+                    <section>
+                        <h3 class="good">Corretto!</h3>
+                        <pre><code data-trim contenteditable>
+function plutoAiutaPaperino() {
+    var pluto = new Pluto(),
+        paperino = new Paperino();
+
+    pluto.corre();
+    pluto.mangia();
+    pluto.aiuta(paperino);
+}
+                        </code></pre>
+                        Più leggibile e evitiamo problemi legati all' "hoisting".
+                    </section>
+
                 </section>
 
-                <section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-                    <h2>Gif animata!</h2>
+                <section>
+                    <section>
+                        <h2>For loops scritti male</h2>
+                    </section>
+                    <section>
+                        <h3 class="bad">Da evitare!</h3>
+                        <pre><code data-trim contenteditable class="javascript">
+for(i = 0; i < list.length; i++) {
+    // do something
+};
+                        </code></pre>
+                        "i" in questo caso è globale. Se "list" è un array particolarmente grande il dover recuperare ad ogni iterazione il valore di "list.length" rallenta il codice.
+                    </section>
+                    <section>
+                        <h3 class="good">Corretto!</h3>
+                        <pre><code data-trim contenteditable>
+for(var i = 0, len = list.length; i < len; i++) {
+    // do something
+};
+                        </code></pre>
+                        "list.length" in questo caso viene "cachato" nella variabile "len". (<a href="http://jsperf.com/loops">http://jsperf.com/loops</a>)
+                    </section>
+
                 </section>
 
+                <section>
+                    <section>
+                        <h2>Eval is evil</h2>
+                    </section>
+                    <section>
+                        <h3 class="bad">Da evitare!</h3>
+                        <pre><code data-trim contenteditable>
+                            eval('var i = "Welcome Hackers!"; alert(i);');
+                        </code></pre>
+                        "eval" esegue il codice javascript inserito in una stringa.
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Usare i costruttori predefiniti al posto della sintassi "literal".</h2>
+                    </section>
+                    <section>
+                        <h3 class="bad">Da evitare!</h3>
+                        <pre><code data-trim contenteditable>
+                            var disney = new Array("Pippo","Topolino","Paperino");
+                        </code></pre>
+                        Qualsiasi cosa in Javascript è un Object, il linguaggio mette a disposizione dei costruttori che ereditano da Object implementando nuove funzionalità. "new Array()" ad esempio crea un oggetto di tipo Array con delle funzionalità come "pop","push","shift", etc.
+                    </section>
+                    <section>
+                        <h3 class="good">Corretto!</h3>
+                        <pre><code data-trim contenteditable>
+                            var disney = ["Pippo","Topolino","Paperino"];
+                        </code></pre>
+                        <p>Questa sintassi è molto più pulita e condivisa da gran parte dei linguaggi di programmazione.</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Inquinamento Globale</h2>
+                    </section>
+                    <section>
+                        <p>E' buona norma evitare di definire variabili o funzioni nello "scope globale" perchè sono accessibili e modificabili in qualsiasi punto dell'applicazione.</p><p>C'è il rischio che vengano accidentalmente sovrascritte da altri programmatori o plugin esterni e rendono il codice difficile da mantenere.</p>
+                    </section>
+                    <section>
+                        <h3 class="bad">Da evitare!</h3>
+                        <pre><code data-trim contenteditable class="html">
+<script>
+var pluto = new Pluto(),
+    plutoHouse = new DogHouse({color:red,material:'wood', size: [100,100,80]});
+
+function loadPlutoHouse() {
+    return pluto.load(house);
+}
+</script>
+                        </code></pre>
+                        <p>Tutte le variabili definite nel frammento di codice sopra-riportato sono globali perchè non sono definite all'interno di una funzione.</p>
+                    </section>
+                    <section>
+                        <h3 class="good">Corretto!</h3>
+                        <pre><code data-trim contenteditable class="html">
+<script>
+// IIFE = Immediately-Invoked Function Expression
+(function(document, window){
+    var pluto = new Pluto(),
+        plutoHouse = new DogHouse({color:red,material:'wood', size: [100,100,80]});
+
+    function loadPlutoHouse() {
+        return pluto.load(house);
+    }
+})(document,window, undefined);
+</script>
+                        </code></pre>
+                        Usare una funzione che viene definita e subito invocata crea uno "scope isolato". Variabili e funzioni esistono solo all'interno dell' IIFE.
+                    </section>
+                    <section>
+                        <h3>Esempio in jQuery</h3>
+<pre><code data-trim contenteditable class="html">
+<script>
+// IIFE = Immediately-Invoked Function Expression
+(function($,document, window){
+    //code immediately executed goes here
+    $(function(){
+        //code executed on document ready goes here
+    });
+})(jQuery, document,window, undefined);
+</script>
+</code></pre>
+                    </section>
+                </section>
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #jQuery
+                        #Anti-patterns
+                    </script>
+                </section>
+                <section>
+                    <section>
+                        <h2>Evviva i costruttori!</h2>
+                    </section>
+                    <section>
+                        <h3 class="bad">Da evitare!</h3>
+                        <pre><code data-trim contenteditable class="javascript">
+$('button.confirm').on('click', function() {
+    // Do it once
+    $('.modal').modal();
+
+    // And once more
+    $('.modal').addClass('active');
+
+    // And again for good measure
+    $('modal').css(...);
+});
+                        </code></pre>
+                        Ogni volta che usiamo $('...') viene creato un nuovo oggetto jQuery parsando il DOM e cercando l'elemento corrispondente.
+                        Assolutamente poco performante.
+                    </section>
+                    <section data-background="http://media.giphy.com/media/yLpeLldWdnQDC/giphy.gif">
+                    </section>
+                    <section>
+                        <h3 class="good">Soluzione 1: Chaining</h3>
+                        <pre><code data-trim contenteditable class="javascript">
+$('button.confirm').on('click', function() {
+    $('.modal')
+        .modal()
+        .addClass('active')
+        .css(...);
+});
+                        </code></pre>
+                        jQuery ci permette di "concatenare" più funzioni al medesimo oggetto $ perchè ogni funzione ritorna l'instanza dell'elemento DOM jquerizzato.
+                    </section>
+                    <section>
+                        <h3 class="good">Soluzione 2: Caching</h3>
+                        <pre><code data-trim contenteditable class="javascript">
+var $buttonConfirm = $('button.confirm'),
+    $modal = $('.modal');
+    $background = $('.bg-overlay');
+
+$buttonConfirm.on('click', function() {
+    $modal
+        .modal()
+        .addClass('active')
+        .css(...);
+
+    $background.removeClass('hidden');
+
+});
+                        </code></pre>
+                        Salvare il riferimento all'oggetto jQuery per poi riusarlo nel codice è la soluzione ottimale. In particolare all'interno dei listener evitiamo di dover "attraversare" il DOM ogni volta che si scatena l'evento a cui l'ascoltatore è associato.
+                    </section>
+                    <section data-background="http://media.giphy.com/media/i03O15D50joLS/giphy.gif">
+                    </section>
+                    <section>
+                        <h2>L'inferno delle CallBack</h2>
+                    </section>
+                    <section>
+                        <h3 class="bad">Da evitare!</h3>
+                        <pre><code data-trim contenteditable class="javascript">
+$buttonConfirm.on('click', function() {
+    $overlay.fadeIn(400, function(){
+        $.ajax('/some/modal/content',{},function(data){
+            $overlay.html(data).slideUp(300, function() {
+                ....
+            })
+        })
+    })
+});
+                        </code></pre>
+                        Annidare callback porta a codice difficile da capire e mantenere.
+                    </section>
+                    <section>
+                        <h3 class="good">Un pò meglio</h3>
+                        <pre><code data-trim contenteditable class="javascript">
 
 
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Esempio slide annidate</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-					</section>
-					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-					</section>
-				</section>
+$buttonConfirm.on('click', showOverlay);
 
+function showOverlay() {
+     $overlay.fadeIn(400, getOverlayDataFromServer);
+}
 
-				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+function getOverlayDataFromServer() {
+    $.ajax('/some/modal/content',{}, updateOverlayContent);
+}
 
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
-				</section>
+function updateOverlayContent(data) {
+    $overlay.html(data).slideUp(300, function() {
+        ....
+    })
+}
+                        </code></pre>
+                        Portare le funzioni all'esterno aiuta la leggibilità.
+                    </section>
+                    <section>
+                        <h3 class="good">Deferred Objects</h3>
+                        <pre><code data-trim contenteditable class="javascript">
 
+$buttonConfirm.on('click', function(e){
+    $.when(showOverlay())
+     .then(getOverlayDataFromServer())
+     .done(updateOverlayContent(data))
+     .fail(function(){ alert("Something went wrong!") });
+});
 
-				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-						<h2>... and GIFs!</h2>
-					</section>
-				</section>
+function showOverlay() {
+    // $.fn.fadeIn has a promise() method defined so it works like a deferred
+    return $overlay.fadeIn(400);
+}
+
+function getOverlayDataFromServer() {
+    return $.ajax('/some/modal/content');
+}
+
+function updateOverlayContent(data) {
+    $overlay.html(data).slideUp(300, function() {
+        ....
+    })
+}
+                        </code></pre>
+                        Alcuni medoti jQuery ritornano direttamente un Deferred object, è possibile creare anche "azioni" custom che utilizzano $.Deferred.
+                    </section>
+                </section>
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #Linee guida
+                        ##(Tools per scrivere Javascript pulito)
+                    </script>
+                </section>
+                <section>
+                    <section>
+                        <h2>'use strict';</h2>
+                    </section>
+                    <section>
+                        <pre><code data-trim contenteditable class="javascript">
+'use strict';
+                        </code></pre>
+                        <pre><code data-trim contenteditable class="javascript">
+function myFunction() {
+    'use strict';
+    //...
+}
+                        </code></pre>
+                        Con questa dicitura abilitiamo la modalità "Strict Mode": per alcuni sbagli (o cattive abitudini) normalmente accettati dall'interprete JS vengono sollevati errori.
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Usare un linter JS: JsHint</h2>
+                    </section>
+                    <section>
+                        <p>Può essere usato sia come plugin nell'editor di testo sia all'interno del vostro task manager (Grunt/Gulp).</p>
+                    </section>
+                    <section>
+                        <p>Esempio</p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Scegliere una StyleGuide e usare JSCS</h2>
+                    </section>
+                    <section>
+                        <p>Ogni programmatore ha le sue abitudini, giuste o sbagliate che siano.</p><p>Scegliere una <strong>styleguide</strong> e condividerla con il team di progetto è fontamentale per avere un codice omogeneo e "stilisticamente" pulito.</p>
+                        <ul>
+                            <li><a href="https://github.com/airbnb/javascript" target="_blank">AirBnB</a></li>
+                            <li>
+                                <a href="https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml">Google</a>
+                            </li>
+                            <li>
+                                <a href="https://contribute.jquery.org/style-guide/js/">jQuery</a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/rwaldron/idiomatic.js/">Idiomatic.js</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2><a href="http://jscs.info/overview.html" target="_blank">JSCS</a></h2>
+                    </section>
+                </section>
 
 			</div>
 
