@@ -20,6 +20,8 @@ $backgroundColor: #fff;
 
 $mainColor: #333;
 $headingColor: #fdb569;
+$errorColor: #ff3e3e;
+$successColor: #3eff74;
 
 $mainFontSize: 38px;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
@@ -38,6 +40,8 @@ $heading2Size: 1.6em;
 $heading3Size: 1.3em;
 $heading4Size: 1.0em;
 
+$headingLineHeight: 1.8;
+
 
 .reveal .slides > section {
     &.title-slide {
@@ -46,7 +50,16 @@ $heading4Size: 1.0em;
             color: #fff;
             font-family: $slideTitleFont;
         }
+        h2 {
+            color: #fff;
+        }
     }
+}
+.bad {
+    color: $errorColor !important;
+}
+.good {
+    color: $successColor !important;
 }
 
 
