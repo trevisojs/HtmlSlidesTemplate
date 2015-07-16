@@ -230,14 +230,14 @@ function loadPlutoHouse() {
                         <pre><code data-trim contenteditable class="html">
 <script>
 // IIFE = Immediately-Invoked Function Expression
-(function(document, window){
+(function(document, window, undefined){
     var pluto = new Pluto(),
         plutoHouse = new DogHouse({color:red,material:'wood', size: [100,100,80]});
 
     function loadPlutoHouse() {
         return pluto.load(house);
     }
-})(document,window, undefined);
+})(document,window);
 </script>
                         </code></pre>
                         Usare una funzione che viene definita e subito invocata crea uno "scope isolato". Variabili e funzioni esistono solo all'interno dell' IIFE.
