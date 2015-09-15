@@ -19,7 +19,7 @@
 $backgroundColor: #fff;
 
 $mainColor: #333;
-$headingColor: #fdb569;
+$headingColor: #fd7c5b;
 $errorColor: #ff3e3e;
 $successColor: #3eff74;
 
@@ -34,6 +34,11 @@ $headingFontWeight: 600;
 $linkColor: #8984ed;
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
+
+$blue: #27a9e1;
+$red: #ef4036;
+$green: #38b449;
+$black: #333;
 
 $heading1Size: 1.8em;
 $heading2Size: 1.6em;
@@ -54,12 +59,28 @@ $headingLineHeight: 1.8;
             color: #fff;
         }
     }
+    img {
+        border: 0;
+        box-shadow: none;
+    }
 }
 .bad {
     color: $errorColor !important;
 }
 .good {
     color: $successColor !important;
+}
+.color-blue {
+    color: $blue !important;
+}
+.color-red {
+    color: $red !important;
+}
+.color-green {
+    color: $green !important;
+}
+.color-black {
+    color: $black !important;
 }
 
 

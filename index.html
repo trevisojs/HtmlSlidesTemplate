@@ -40,136 +40,606 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section class="title-slide" data-background="#717cfa" data-markdown>
+				<section class="title-slide" data-background="#6fa69f" data-markdown>
 					<script type="text/template">
-                        #titolo presentazione
+                        #Backbone.js
+                        ##(Parte 1)
                     </script>
 				</section>
 
                 <section class="title-slide" data-background="#fd7c5b" data-markdown>
                     <script type="text/template">
-                        #titolo sezione
+                        #Tanto tempo fa, in una galassia lontana lontana..
                     </script>
+
                 </section>
 
-				<section data-markdown>
-                    <script type="text/template">
-                        ##Titolo paragrafo
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam similique, explicabo veritatis in quos, quae commodi beatae non aliquid culpa perferendis cum cumque. Natus, neque iure, accusamus repellat explicabo atque!
-                    </script>
-				</section>
+                <section data-background="http://assets.bizjournals.com/boston/blog/mass-high-tech/0123-Resig-7*750.jpg?v=1">
+                    <aside class="notes">
+                        Jhon Resig - Boston - 21 anni
+                        jQuery
+                        Pubblicato nel Gennaio 2006
 
-                <section>
-                    <h2>Esempio codice</h2>
-                    <pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-                    </code></pre>
+                        Libreria
+                    </aside>
                 </section>
 
                 <section data-markdown>
                     <script type="text/template">
-                        ##Lista
-                        - item1
-                        - item2
-                        - item3
+                        ## jQuery: Punti di forza
+                        - Facilità nel recuperare e modificare elementi del DOM
+                        - Cross Browser
+                        - Gestione Eventi
+                        - Ajax semplificato
+                        - Animazioni
+                        - Tanti tanti plugin
+                        - Write less, Do more
+                    </script>
+                </section>
+
+
+                <section>
+                    <ul>
+                        <li>Non serve essere dei programmatori per usare jQuery</li>
+                    </ul>
+                    <pre><code data-trim contenteditable>
+(function($){
+    $(document).ready(function(){
+
+        var $btn = $('.btn');
+
+        $btn.on('click', function(){
+            $btn.toggleClass('animate');
+        });
+
+    });
+})(jQuery);
+
+
+                    </code></pre>
+                    <aside class="notes">
+                        <strong>#templari #html/css #percorsi che portano a diventare un programmatore frontend</strong><br>
+
+                        Molti dei Frontendisti che ho conosciuto non arrivano da un mondo legato alla programmazione ma magari sono più orientati alla grafica.
+                    </aside>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## jQuery: Limiti
+                        ### (o meglio: limiti dei programmatori jQuery)
+                        - NON SERVE ESSERE DEI PROGRAMMATORI PER USARE JQUERY
+                        - Codice poco strutturato (Spaghetti Code)
+                        - Tendenza ad abusare dei Plugin
+                        - Limitato ad un utilizzo prevalentemente "grafico" di Javascript
+
+                        Note:
+                        **Io sono uno dei programmatori che ha usato per anni jQuery senza sapere nulla di Javascript**
+
+                        quando ho iniziato a fare web mi interessava molto di più l aspetto grafico rispetto a quello di programmazione (parlo di php)
+                    </script>
+                </section>
+
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #Pattern Strutturali
+
+                        note:
+                        Cos è un pattern strutturale?
+                        Codice organizzato in moduli atomici con funzionalità indipendenti.
+                    </script>
+                </section>
+
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        ##Pattern MVC
                     </script>
                 </section>
 
                 <section>
-                    <h2>Citazioni</h2>
-                    <blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-                        &ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-                        reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-                    </blockquote>
+                    <img src="img/mvc.png" height="667" width="929" alt="">
+                    <aside class="notes">
+                        Esempio Backend: Router -> Controller/Action -> Model (DB) -> View HTML
+
+                        Separazione delle competenze in moduli
+                    </aside>
                 </section>
 
-                <section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-                    <h2>Gif animata!</h2>
+
+                <section>
+                    <h2 class="color-blue">Model</h2>
+                    <ul>
+                        <li>
+                            Dati: <strong>dominio</strong> dell'applicazione
+                        </li>
+                        <li>
+                            Esempio Spotify: <strong>Track, Artist, Genre, Playlist</strong>
+                        </li>
+                    </ul>
                 </section>
 
+                <section>
+                    <h2 class="color-red">View</h2>
+                    <ul>
+                        <li>
+                            <strong>Iterfaccia utente: markup e template</strong>
+                        </li>
+                        <li>
+                            Generalmente <strong>rappresentano graficamente i Modelli</strong>.
+                            Esempio Spotify: la Track è rappresentata come elemento &lt;li&gt;&lt;/li&gt;.
+                        </li>
+                        <li>Quando il modello cambia, l'interfaccia si aggiorna di conseguenza</li>
+                        <li>Un modello può avere più Viste</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="color-green">Controller</h2>
+                    <ul>
+                        <li>
+                            <strong>"ascoltano"</strong> l'interfaccia utente e aggiornano il Model
+                        </li>
+                        <li>
+                            Esempio Spotify: <strong>Clicco play e setto lo stato di Track "isPlaying" a true</strong>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Javascript e MVC</h2>
+                    <p>Ci sono diversi framework Javascript che sviluppano il pattern MVC in modi diversi; alcuni come Backbone e React integrano View e Controller insieme, altri, come Angular, favoriscono il forte accoppiamento tra View e Model.</p>
+                </section>
+
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #Backbone.js
+                    </script>
+                </section>
+
+                <section>
+                    <h2>Introduzione</h2>
+                    <p>"Backbone.js is a lightweight JavaScript library that adds <strong>structure to your client-side code</strong>. It makes it easy to manage and decouple concerns in your application, leaving you with code that is <strong>more maintainable</strong> in the long term.
+
+Developers commonly use libraries like Backbone.js to create <strong>single-page applications</strong> (SPAs). SPAs are web applications that load into the browser and then react to data changes on the client side without requiring complete page refreshes from the server."</p>
+<p><q cite="http://addyosmani.github.io/backbone-fundamentals/#what-is-mvc">(Addy Osmani - Developing Backbone.js Application)</q></p>
+
+                    <aside class="notes">
+                        Strutturare il codice JS
+                        Codice più mantenibile nel lungo termine
+                        Ideale per applicazioni web e siti one-page.
+                    </aside>
+                </section>
+
+                <section>
+                    <h2 class="color-blue">Model:</h2>
+                    <h3 class="color-black"><u>Backbone.Model</u> e <u>Backbone.Collection</u></h3>
+                </section>
+                <section>
+                <section>
+                    <h2 class="color-blue">Definire un nuovo Model</h2>
+                    <pre><code data-trim contenteditable>
+//create a Song Model
+var Song = Backbone.Model.extend({
+    defaults: {
+        title: '',
+        duration: 0,
+        isPlaying: false,
+        artist: '',
+        album: ''
+    },
+    initialize: function() {
+        //this is something like the contructor,
+        //is called when a new Song is created
+    }
+});
+//create a new Song
+var noWomanNoCry = new Song({
+    title: 'No Woman, No Cry',
+    duration: 210, //seconds
+    artist: 'Bob Marley',
+    album: 'Natty Dread'
+})
+
+                    </code></pre>
+                </section>
+                <section>
+                    <h2 class="color-blue">Model Getters</h2>
+                    <pre><code data-trim contenteditable>
+//getters for every Song property
+noWomanNoCry.get('title');
+//get a JSON representation of model attributes
+noWomanNoCry.toJSON()
+                    </code></pre>
+                </section>
+                <section>
+                    <h2 class="color-blue">Model Setters</h2>
+                    <pre><code data-trim contenteditable>
+//set a property
+noWomanNoCry.set('title','No woman, no cry (Radio edit)');
+noWomanNoCry.set('duration',125);
+//set multiple property
+noWomanNoCtry.set({
+    'title': 'No woman, no cry (Radio edit)',
+    'duration': 125
+})
+                    </code></pre>
+                </section>
+                <section>
+                    <h2 class="color-blue">Model Events</h2>
+                    <pre><code data-trim contenteditable>
+//every time we change an attribute a change event is triggered by the model
+noWomanNoCry.on('change',callback);
+
+//we can also listen for changes to a particular attribute
+noWomanNoCry.on('change:duration',callback);
+
+//we can listen for changes in all models when we first define the Model
+var Album = Backbone.Model.extend({
+    defaults: { ... },
+    initialize: function() {
+        this.on('change', function(e) {
+            console.log(e.changed);
+        })
+    }
+})
+                    </code></pre>
+                </section>
+                <section>
+                    <h2 class="color-blue">Model Validation</h2>
+                    <pre><code data-trim contenteditable>
+var Album = Backbone.Model.extend({
+    defaults: {
+        title: '',
+        songs: []
+    },
+    validate: function(attrs) {
+        if(attrs.title.length > 50) {
+            return 'Album must have a title within 50 chars!';
+        }
+    },
+    initialize: function() {
+        this.on('invalid', function(model,error){
+            console.log(error);
+        })
+    }
+})
+
+var a = new Album();
+a.set({'title','asdadkakdahjkdhakjdh...'},{validate:true});
+// a.validationError contains "Album must have a title within 50 chars!"
+                    </code></pre>
+                    <p>Il metodo validate viene chiamato quando settiamo un attributo specificando {validate:true} o quando viene chiamato il metodo "save" del modello.</p>
+                </section>
+                </section>
+                <section>
+                <section>
+                    <h2 class="color-blue">Definire una Collection</h2>
+                    <p>Una collection è un insieme di Modelli di un determinato tipo</p>
+                    <pre><code data-trim>
+var SongsCollection = Backbone.Collection.extend({
+    model: Song
+})
+                    </code></pre>
+                </section>
+                <section>
+                    <h2 class="color-blue">Modificare una Collection</h2>
+                    <pre><code data-trim>
+var novemberRain = new Song({ id:1, title: 'November Rain', artist: "Guns 'n' Roses" });
+var piccolaKetty = new Song({ id:2, title: 'Piccola Ketty', artist: "The Pooh"});
+var stan = new Song({ id:3, title: 'Stan', artist: "Eminem"});
+
+var songs = new SongsCollection([novemberRain,piccolaKetty]);
+
+songs.remove(piccolaKetty);
+songs.add(stan);
+
+//create implicit song
+songs.add({
+    id:25,
+    title: 'Pretty Fly',
+    artist:'The Offspring'
+})
+
+console.log(songs.length); //return 3
+                    </code></pre>
+                </section>
+
+
+                <section>
+                    <h2 class="color-blue">Recuperare un Model da una Collection</h2>
+                    <pre><code data-trim>
+songs.get(3); //return piccolaKetty model
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2 class="color-blue">Eventi Collections</h2>
+                    <pre><code data-trim>
+//called every time a model is added
+songs.on('add', function(song) {
+    console.log(song.get('title'));
+});
+
+//every time a model is removed
+songs.on('remove', function(song) {
+    console.log(song.get('title'));
+})
+
+//every time a model change his "title"
+songs.on('change:title', function(song) {
+    console.log(song.get('title'));
+})
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2 class="color-blue">Underscore utilities</h2>
+                    <pre><code data-trim>
+//sort a collection
+var songsSortedByTitle = songs.sortBy(function(song){
+    return song.get('title').toLowerCase();
+});
+
+//extract a specific attribute
+var artist = songs.pluck('artist');
+
+//filter
+var songsThatLastMoreThanOneMinute = songs.filter(
+    function(song) {
+        return song.duration > 60;
+    }
+)
+                    </code></pre>
+                </section>
+                <section>
+                    <h4 class="color-blue">Recuperare modelli da un Backend REST</h4>
+                    <pre><code data-trim>
+var Songs = Backbone.Collection.extend({
+    model: Song,
+    url: '/songs'
+});
+
+var songs = new Songs();
+songs.fetch();
+//fetch send an http GET request to /songs and populate the collection creating models from json server response.
+                    </code></pre>
+                </section>
+                <section>
+                    <h4 class="color-blue">Salvare modelli su un Backend REST</h4>
+                    <pre><code data-trim>
+var song = songs.get(1); //get Song from collection with ID 1
+
+song.set('title','Updated Title');
+song.save(); // calling save on a model sends an http PUT request to /songs/1
+
+songs.create({'title':'Mother','artist':'Pink Floyd', 'duration': 478 });
+//calling create on a collection sends an http POST request to /songs
+
+                    </code></pre>
+                </section>
+                </section>
 
 
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
-						<h2>Esempio slide annidate</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
+						<h2>Underscore ( _ )</h2>
+                        <p>Underscore (_) è una libreria a cui Backbone si appoggia.</p>
+                        <p>Fornisce una serie di utility per la <strong>"programmazione funzionale"</strong> e un micro <strong>"template engine"</strong>.</p>
 					</section>
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
+						<h2>_.template</h2>
+                        <pre><code data-trim contenteditable>
+//HTML
+<script type="text/template" id="song-status">
+    <p>You are currently listen to <%= title %> from the album <%= album %></p>
+</script>
+
+//JS
+
+//cache the template function
+var tmplFunction = _.template($("#song-status").html());
+
+//replace the placeholder of template with the object property
+var generatedHTML = tmplFunction({title:'No woman, no cry', album:'Natty Dread'});
+
+//inject the modified html into the page
+$(...).html(generatedHTML);
+
+// generatedHTML = You are currently listen to No woman, no cry from the album Natty Dread
+                        </code></pre>
 					</section>
 				</section>
+                <section>
+                <section>
+                    <h2 class="color-red">Definire una View</h2>
+                    <p>Nuovo elemento, non esistente nel DOM.</p>
+                    <pre><code data-trim>
+var SongView = Backbone.View.extend({
+    ...
+});
+                    </code></pre>
+                </section>
+                <section>
+                    <h2 class="color-red">Propietà elemento Contenitore</h2>
+                    <pre><code data-trim>
+tagName: 'li', //default is div
+className: 'song' //optional
+id: '#song-id' //optional
+                    </code></pre>
+                    <pre><code data-trim >
+<li class="song" id="song-id"></li>
+                        </code></pre>
+                </section>
+                <section>
+                    <h2 class="color-red">Costruttore</h2>
+                    <pre><code data-trim contenteditable>
+initialize: function(options) {
+    this.options = options || {};
+    this.model.bind('change', _.bind(this.render,this));
+}
+                    </code></pre>
+                </section>
+                <section>
+                    <h2 class="color-red">Azioni della view</h2>
+                    <pre><code data-trim contenteditable>
+events: {
+    'click .play': 'playTrack',
+    'click .stop': 'stopTrack'
+},
+playTrack: function() {
+    // play track
+},
+stopTrack: function() {
+    // stop track
+}
+                    </code></pre>
+                    <p>Sostituisce</p>
+                    <pre><code data-trim contenteditable>
+$('li').delegate('.play','click', function(){...});
+                    </code></pre>
+                </section>
+                <section>
+                    <h2 class="color-red">Rendering</h2>
+                    <pre><code data-trim contenteditable>
+//cache template function
+tmpl: _.template($('#tmpl-song').html()),
+render: function() {
+    //this.$el is created by Backbone using tagName, className and id
+    this.$el.html(
+        this.tmpl(
+            this.model.toJSON()
+        )
+    );
+    return this;
+}
+                    </code></pre>
+                    <p>Ad ogni view viene generalmente associato un "model"; la View mostra all'utente lo stato del Model attraverso la funzione di rendering.</p>
+                </section>
+                <section>
+                    <h2 class="color-red">Inizializzare la View</h2>
+                    <pre><code data-trim contenteditable>
+var songView = new SongView();
 
+console.log(songView.el) // <li class='song'></li>
 
-				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+var songView2 = new SongView({ model: noWomanNoCrySong });
+songView2.render();
+console.log(songView2.el) // <li class='song'>NoWomanNoCry - Natty Dread <span class="play"></span><span class="pause"></span></li>
+                    </code></pre>
+                </section>
+                <section>
+                    <h2 class="color-red">Definire una View</h2>
+                    <p>Elemento esistente nel DOM.</p>
+                    <pre><code>
+<body>
+    <div class="player">
+        <button class="play"></button>
+        <button class="next"></button>
+        <button class="prev"></button>
+    </div>
+</body>
+                        </code></pre>
+                </section>
+                <section>
+                    <h2 class="color-red">Definire una View</h2>
+                    <p>Elemento esistente nel DOM.</p>
+                    <pre><code data-trim contenteditable>
+var PlayerView = Backbone.View.extend({
+    'el': '.player',
+    events: {
+        'click .play': 'playTrack',
+        'click .next': 'nextTrack',
+        'click .prev': 'prevTrack'
+    },
+    playTrack: function() {
+        ...
+    },
+    nextTrack: function() {
+        ...
+    },
+    prevTrack: function() {
+        ...
+    }
+})
+                        </code></pre>
+                </section>
+                <section>
+                    <h2 class="color-red">Alternativa</h2>
+                    <pre><code data-trim contenteditable>
+var playerView = new PlayerView();
 
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
+// el can also be setted when creating the view
+
+var playerView = new PlayerView({el: $('.player')})
+                        </code></pre>
+                </section>
+                </section>
+
+                <section>
+                <section>
+                    <h2>Definire un Router</h2>
+                    <pre><code data-trim contenteditable>
+var SpotifyRouter = Backbone.Router.extend({
+    routes: {
+        'songs': 'showSongsList', // http://mysite.it/#songs -> call showSontsList
+        'songs/:id': 'showSongDetail',  // http://mysite.it/#song/5 -> call showSongDetail
+    },
+    initialize: function() {
+
+    },
+    showSongsList: function() {
+        //create the view
+        new SongsView({collection: songs });
+    },
+    showSongDetail: function(id) {
+        //create the view
+        new SongDetailView({ model: songs.get(id) });
+    }
+});
+
+var spotifyRouter = new SpotifyRouter();
+Backbone.history.start();
+                    </code></pre>
+                    <p>Creare delle url lato client.</p>
+                </section>
+                <section>
+                    <h4>Usare il metodo "navigate" per navigare tra le rotte</h4>
+                    <pre><code data-trim contenteditable>
+spotifyRouter.navigate('songs/2', { trigger: true });
+//without using trigger true, the state change but the url remains the same
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Evento 'route'</h2>
+                    <pre><code data-trim contenteditable>
+//route event is triggered every time the route change
+sporifyRouter.on('route', function(name,args) {
+    ...
+})
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Abilitare il PushState</h2>
+                    <pre><code>
+Backbone.history.start({ pushState: true });
+$(document).on('click', 'a:not([data-bypass])', function (evt) {
+
+    var href = $(this).attr('href');
+    var protocol = this.protocol + '//';
+
+    if (href.slice(protocol.length) !== protocol) {
+      evt.preventDefault();
+      app.router.navigate(href, true);
+    }
+});
+                    </code></pre>
+                </section>
+                </section>
+
+				<section data-background="https://media.giphy.com/media/jYAGkoghdmD9S/giphy.gif">
 				</section>
 
-
-				<section>
-					<section data-background="#dddddd">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#dddddd"</code> on a slide to change the background color. All CSS color formats are supported.
-						</p>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Tiled Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
-						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
-							<h2>Video Backgrounds</h2>
-							<pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
-						</div>
-					</section>
-					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
-						<h2>... and GIFs!</h2>
-					</section>
-				</section>
 
 			</div>
 
