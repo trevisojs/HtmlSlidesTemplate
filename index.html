@@ -42,66 +42,283 @@
 			<div class="slides">
 				<section class="title-slide" data-background="#6fa69f" data-markdown>
 					<script type="text/template">
-                        #Backbone.js
-                        ##(Parte 1)
+                        #React.js
                     </script>
 				</section>
 
+                <section data-markdown>
+                    <script type="text/template">
+                        #Cos'è?!
+                        E’ una libreria sviluppata da Facebook
+per
+
+**creare interfacce utenti complesse**.
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        #Cosa fa?
+                        **Render UI** + **Gestione eventi dell'utente**
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+E’ la **View** di una architettura **MVC**.
+
+Può essere usata Stand Alone o insieme ad un altro
+framework MVC.
+
+**Il framwork MVC di Facebook si chiama FLUX!**<!-- .element: class="fragment" data-fragment-index="1" -->
+
+Ma può essere utilizzato anche al posto delle view di Backbone o come direttiva in Angular.<!-- .element: class="fragment" data-fragment-index="2" -->
+                    </script>
+                </section>
+
                 <section class="title-slide" data-background="#fd7c5b" data-markdown>
                     <script type="text/template">
-                        #Tanto tempo fa, in una galassia lontana lontana..
+                        #Componenti React
                     </script>
 
                 </section>
 
-                <section data-background="http://assets.bizjournals.com/boston/blog/mass-high-tech/0123-Resig-7*750.jpg?v=1">
-                    <aside class="notes">
-                        Jhon Resig - Boston - 21 anni
-                        jQuery
-                        Pubblicato nel Gennaio 2006
+                <section data-markdown>
+                    <script type="text/template">
+                        #Cos'è un Componente?
+                        Un componente è una **entità
+                        atomica** che racchiude **presentazione e logica**,
+                        favorendo il **riutilizzo**.
 
-                        Libreria
+                        In pratica, un componente fonde insieme HTML e JS superando l'idea di "View JS" con il relativo "Template". <!-- .element: class="fragment" data-fragment-index="1" -->
+
+                    </script>
+                </section>
+
+                <section>
+                    <h1>Rating.jsx</h1>
+                    <a target="_blank" href="http://codepen.io/robertcasanova/pen/pjbzjZ?editors=101">LINK</a>
+                    <aside class="notes">
+                        <a target="_blank" href="http://codepen.io/anon/pen/OyXLJm?editors=101">LINK COMPLETO</a>
                     </aside>
                 </section>
 
                 <section data-markdown>
                     <script type="text/template">
-                        ## jQuery: Punti di forza
-                        - Facilità nel recuperare e modificare elementi del DOM
-                        - Cross Browser
-                        - Gestione Eventi
-                        - Ajax semplificato
-                        - Animazioni
-                        - Tanti tanti plugin
-                        - Write less, Do more
+                        #Perchè il file ha estensione JSX?
+Il codice HTML inserito dentro il componente React va trasformato in Javascript che il browser può interpretare. JSX è un pre-compilatore che ha proprio questo scopo.
+
                     </script>
                 </section>
 
 
+
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #JSX
+                    </script>
+                </section>
+
                 <section>
-                    <ul>
-                        <li>Non serve essere dei programmatori per usare jQuery</li>
-                    </ul>
+                    <h1>JSX compilato in JS</h1>
+                    <a href="http://codepen.io/anon/pen/OyXLJm?editors=101">File JSX</a>
+                </section>
+
+                <section>
+                    <h1>Metodi per compilare JSX</h1>
                     <pre><code data-trim contenteditable>
-(function($){
-    $(document).ready(function(){
-
-        var $btn = $('.btn');
-
-        $btn.on('click', function(){
-            $btn.toggleClass('animate');
-        });
-
-    });
-})(jQuery);
-
-
+<script src="build/react.js"></script>
+<script src="build/JSXTransformer.js"></script>
+<script type="text/jsx" src="js/Rating.js"></script>
                     </code></pre>
-                    <aside class="notes">
-                        <strong>#templari #html/css #percorsi che portano a diventare un programmatore frontend</strong><br>
+                    <p>libreria JSXTransformer</p>
+                    <p>(da usare solo in fase di sviluppo)</p>
+                </section>
 
-                        Molti dei Frontendisti che ho conosciuto non arrivano da un mondo legato alla programmazione ma magari sono più orientati alla grafica.
-                    </aside>
+                <section>
+                    <h1>Metodi per compilare JSX</h1>
+                    <pre><code data-trim contenteditable>
+npm install -g react-tools
+jsx --warch src/ build/
+                    </code></pre>
+                    <p>Utilizzando "react-tools" da linea di comando</p>
+                </section>
+
+                <section>
+                    <h1>Metodi per compilare JSX</h1>
+                    <p>All'interno di Grunt / Gulp con i plugin</p>
+                    <p><strong>"grunt-babel"</strong> e <strong>"gulp-react"</strong></p>
+                </section>
+
+                <section>
+                    <h1>Metodi per compilare JSX</h1>
+                    <p>Utilizzando un "Module System" come <strong>Browserify</strong> o <strong>Webpack</strong> con i relativi Transformers <strong>"Reactify"</strong>,<strong>"Babelify"</strong></p>
+                </section>
+
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #render()
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        #render()
+                        La funzione di render **aggiorna il markup** di un componente.
+                        <a target="_blank" href="http://codepen.io/anon/pen/OyXLJm?editors=101">File JSX</a>
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        #render()
+
+                        Viene chiamata quando il componente viene aggiunto per la prima volta al DOM e successivamente in modo automatico ad ogni **aggiornamento di stato** o **modifica delle propietà esterne**.
+                    </script>
+                </section>
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #Stato e Propietà di un Componente
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ###Stato di un componente: this.state
+                        Lo stato di un componente è salvato nella variabile **this.state** del componente stesso.
+
+                        Lo stato inziale è impostato nella funzione **getInitialState()**.
+                        E' possibile successivamente modificare lo stato utilizzando la funzione **setState({ variabile: valore })**
+
+
+                        <a target="_blank" href="http://codepen.io/robertcasanova/pen/meEbeO">Esempio</a>
+                        <aside class="notes">
+                            <a target="_blank" href="http://codepen.io/robertcasanova/pen/jbrNWK?editors=101">Esempio Completo</a>
+                        </aside>
+                    </script>
+
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ###Propietà di un componente: this.props
+                        Le propietà di un componente sono salvata nella variabile **this.props** e vengono inizializzate nel metodo **getDefaultProps()** o a livello di markup come **attributi** del componente
+
+
+                        <a target="_blank" href="http://codepen.io/robertcasanova/pen/jbrNWK?editors=101">Esempio</a>
+                        <aside class="notes">
+                            <a target="_blank" href="http://codepen.io/robertcasanova/pen/OyXLbx?editors=101">Esempio Completo</a>
+                        </aside>
+                    </script>
+
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ###this.props VS this.state
+                        Lo stato di un componente può mutare all'interno del componente stesso mentre le propietà rimangono invariate.
+                    </script>
+                </section>
+
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #Gestione Eventi
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Binding
+                        Il binding degli eventi avviene all'interno dei tag e gli ascoltatori sono normali funzioni definite nel componente.
+                        <aside class="notes">
+                            <a target="_blank" href="http://codepen.io/robertcasanova/pen/EVyYWY?editors=101">Esempio Completo</a>
+                        </aside>
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Binding
+                        Gli eventi sono wrappati nell'oggetto **Synthetic Event** di React che uniforma le propietà degli eventi tra i diversi browser.
+
+
+                        <small>onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
+onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
+onMouseMove onMouseOut onMouseOver onMouseUp</small>
+                    </script>
+                </section>
+
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #Ciclo di vita di un componente
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ### Callback
+                        Da quando un componente viene inserito nel DOM a quando viene rimosso si verificano diversi eventi.
+
+                        Esistono alcuni metodi predefiniti che vengono invocati in particolari stati della vita di un componente.
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ### componentWillMount()
+                        Chiamato solo una volta **prima del rendering iniziale**.
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### componentDidMount()
+                        Chiamato una sola volta **dopo il primo rendering**.
+
+                        E’ possibile accedere all’elemento appena creato con **React.findDOMNode(this)**;
+
+                        N.B: In questa fase si inizializzano gli eventuali Plugin jQuery / si aggiungono ascoltatori ad eventi esterni. (es: $(window).on('resize')...) / si fanno chiamate ajax per aggiornare lo stato da un server
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### componentWillReceiveProps(nextProps)
+
+                        Chiamato ad ogni **modifica delle propietà esterne**.
+
+                        N.B: Questo metodo viene usato per eventuali trasformazioni delle propietà.
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        #### shouldComponentUpdate(nextProps,nextState)
+
+                        Viene chiamata **prima di ogni rendering** ossia quando
+                        il componente riceve nuove propietà o
+                        viene modificato lo stato.
+
+
+                        Se questa funzione ritorna false,
+                        la fase di rendering viene saltata.
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        #### componentWillUpdate(nextProps,nextState)
+
+                        Chiamata **prima di ogni rendering** se shouldComponentUpdate ritorna "true".
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        #### componentDidUpdate(prevProps,prevState)
+
+                        Chiamata **subito dopo il rendering** .
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        ### componentWillUnmount()
+
+                        Chiamata **prima che un componente venga rimosso** dal
+                        DOM. In questa fase di solito si rimuovono eventuali
+                        ascoltatori associati o si fa il destroy dei plugin.
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        Esempio con plugin jQuery: SLIDER???
+                    </script>
                 </section>
 
                 <section data-markdown>
