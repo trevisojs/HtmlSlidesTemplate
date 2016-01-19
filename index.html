@@ -40,822 +40,212 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section class="title-slide" data-background="#6fa69f" data-markdown>
+				<section class="title-slide" data-background="#0f6eb1" data-markdown>
 					<script type="text/template">
-                        #React.js
+                        #ES6: Javascript Oggi
                     </script>
 				</section>
 
-                <section data-markdown>
-                    <script type="text/template">
-                        #Cos'è?!
-                        E’ una libreria sviluppata da Facebook
-per
+                <section class="title-slide" data-background="#fff">
+                    <img src="img/logo.png" height="426" width="720" alt="">
+                </section>
 
-**creare interfacce utenti complesse**.
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #Speakers
                     </script>
                 </section>
-                <section data-markdown>
+                <section class="title-slide-white" data-background="#fff">
+
+                    <img class="circular" src="img/robb.jpg" height="300"  alt="">
+                    <h1>Robert Casanova</h1>
+                </section>
+                <section class="title-slide-white" data-background="#fff" >
+                        <img class="circular" src="img/nic.png" height="300"  alt="">
+                        <h1>Nicholas Ruggeri</h1>
+                </section>
+
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
                     <script type="text/template">
-                        #Cosa fa?
-                        **Render UI** + **Gestione eventi dell'utente**
+                        #Cosa vedremo oggi?
                     </script>
                 </section>
+
                 <section data-markdown>
                     <script type="text/template">
-E’ la **View** di una architettura **MVC**.
+                        - Differenze e novità di ES6
+                        - Integrazione di ES6 nel workflow
+                    </script>
+                </section>
 
-Può essere usata Stand Alone o insieme ad un altro
-framework MVC.
 
-**Il framwork MVC di Facebook si chiama FLUX!**<!-- .element: class="fragment" data-fragment-index="1" -->
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #Cos'è ES6?
+                    </script>
+                </section>
 
-Ma può essere utilizzato anche al posto delle view di Backbone o come direttiva in Angular.<!-- .element: class="fragment" data-fragment-index="2" -->
+                <section data-markdown>
+                    <script type="text/template">
+                        - ECMA è l'organizzazione che definisce gli standard di alcuni linguaggi tra cui Javascript
+                        - Attualmente la versione supportata dai browser moderni è la ES5
+                        - ES6 è il nuovo standard Javascript a partire da Giugno 2015
+
                     </script>
                 </section>
 
                 <section class="title-slide" data-background="#fd7c5b" data-markdown>
                     <script type="text/template">
-                        #Componenti React
+                        #Variabili
                     </script>
-
                 </section>
+
 
                 <section data-markdown>
                     <script type="text/template">
-                        #Cos'è un Componente?
-                        Un componente è una **entità
-                        atomica** che racchiude **presentazione e logica**,
-                        favorendo il **riutilizzo**.
-
-                        In pratica, un componente fonde insieme HTML e JS superando l'idea di "View JS" con il relativo "Template". <!-- .element: class="fragment" data-fragment-index="1" -->
-
-                    </script>
-                </section>
-
-                <section>
-                    <h1>Rating.jsx</h1>
-                    <a target="_blank" href="http://codepen.io/robertcasanova/pen/pjbzjZ?editors=101">LINK</a>
-                    <aside class="notes">
-                        <a target="_blank" href="http://codepen.io/anon/pen/OyXLJm?editors=101">LINK COMPLETO</a>
-                    </aside>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        #Perchè il file ha estensione JSX?
-Il codice HTML inserito dentro il componente React va trasformato in Javascript che il browser può interpretare. JSX è un pre-compilatore che ha proprio questo scopo.
-
-                    </script>
-                </section>
-
-
-
-                <section class="title-slide" data-background="#fd7c5b" data-markdown>
-                    <script type="text/template">
-                        #JSX
-                    </script>
-                </section>
-
-                <section>
-                    <h1>JSX compilato in JS</h1>
-                    <a href="http://codepen.io/anon/pen/OyXLJm?editors=101">File JSX</a>
-                </section>
-
-                <section>
-                    <h1>Metodi per compilare JSX</h1>
-                    <pre><code data-trim contenteditable>
-<script src="build/react.js"></script>
-<script src="build/JSXTransformer.js"></script>
-<script type="text/jsx" src="js/Rating.js"></script>
-                    </code></pre>
-                    <p>libreria JSXTransformer</p>
-                    <p>(da usare solo in fase di sviluppo)</p>
-                </section>
-
-                <section>
-                    <h1>Metodi per compilare JSX</h1>
-                    <pre><code data-trim contenteditable>
-npm install -g react-tools
-jsx --warch src/ build/
-                    </code></pre>
-                    <p>Utilizzando "react-tools" da linea di comando</p>
-                </section>
-
-                <section>
-                    <h1>Metodi per compilare JSX</h1>
-                    <p>All'interno di Grunt / Gulp con i plugin</p>
-                    <p><strong>"grunt-babel"</strong> e <strong>"gulp-react"</strong></p>
-                </section>
-
-                <section>
-                    <h1>Metodi per compilare JSX</h1>
-                    <p>Utilizzando un "Module System" come <strong>Browserify</strong> o <strong>Webpack</strong> con i relativi Transformers <strong>"Reactify"</strong>,<strong>"Babelify"</strong></p>
-                </section>
-
-                <section class="title-slide" data-background="#fd7c5b" data-markdown>
-                    <script type="text/template">
-                        #render()
-                    </script>
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        #render()
-                        La funzione di render **aggiorna il markup** di un componente.
-                        <a target="_blank" href="http://codepen.io/anon/pen/OyXLJm?editors=101">File JSX</a>
-                    </script>
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        #render()
-
-                        Viene chiamata quando il componente viene aggiunto per la prima volta al DOM e successivamente in modo automatico ad ogni **aggiornamento di stato** o **modifica delle propietà esterne**.
-                    </script>
-                </section>
-                <section class="title-slide" data-background="#fd7c5b" data-markdown>
-                    <script type="text/template">
-                        #Stato e Propietà di un Componente
-                    </script>
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        ###Stato di un componente: this.state
-                        Lo stato di un componente è salvato nella variabile **this.state** del componente stesso.
-
-                        Lo stato inziale è impostato nella funzione **getInitialState()**.
-                        E' possibile successivamente modificare lo stato utilizzando la funzione **setState({ variabile: valore })**
-
-
-                        <a target="_blank" href="http://codepen.io/robertcasanova/pen/meEbeO">Esempio</a>
-                        <aside class="notes">
-                            <a target="_blank" href="http://codepen.io/robertcasanova/pen/jbrNWK?editors=101">Esempio Completo</a>
-                        </aside>
-                    </script>
-
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        ###Propietà di un componente: this.props
-                        Le propietà di un componente sono salvata nella variabile **this.props** e vengono inizializzate nel metodo **getDefaultProps()** o a livello di markup come **attributi** del componente
-
-
-                        <a target="_blank" href="http://codepen.io/robertcasanova/pen/jbrNWK?editors=101">Esempio</a>
-                        <aside class="notes">
-                            <a target="_blank" href="http://codepen.io/robertcasanova/pen/OyXLbx?editors=101">Esempio Completo</a>
-                        </aside>
-                    </script>
-
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        ###this.props VS this.state
-                        Lo stato di un componente può mutare all'interno del componente stesso mentre le propietà rimangono invariate.
-                    </script>
-                </section>
-
-                <section class="title-slide" data-background="#fd7c5b" data-markdown>
-                    <script type="text/template">
-                        #Gestione Eventi
-                    </script>
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        ### Binding
-                        Il binding degli eventi avviene all'interno dei tag e gli ascoltatori sono normali funzioni definite nel componente.
-                        <aside class="notes">
-                            <a target="_blank" href="http://codepen.io/robertcasanova/pen/EVyYWY?editors=101">Esempio Completo</a>
-                        </aside>
-                    </script>
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        ### Binding
-                        Gli eventi sono wrappati nell'oggetto **Synthetic Event** di React che uniforma le propietà degli eventi tra i diversi browser.
-
-
-                        <small>onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
-onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
-onMouseMove onMouseOut onMouseOver onMouseUp</small>
-                    </script>
-                </section>
-
-                <section class="title-slide" data-background="#fd7c5b" data-markdown>
-                    <script type="text/template">
-                        #Ciclo di vita di un componente
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ### Callback
-                        Da quando un componente viene inserito nel DOM a quando viene rimosso si verificano diversi eventi.
-
-                        Esistono alcuni metodi predefiniti che vengono invocati in particolari stati della vita di un componente.
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ### componentWillMount()
-                        Chiamato solo una volta **prima del rendering iniziale**.
-                    </script>
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        ### componentDidMount()
-                        Chiamato una sola volta **dopo il primo rendering**.
-
-                        E’ possibile accedere all’elemento appena creato con **React.findDOMNode(this)**;
-
-                        N.B: In questa fase si inizializzano gli eventuali Plugin jQuery / si aggiungono ascoltatori ad eventi esterni. (es: $(window).on('resize')...) / si fanno chiamate ajax per aggiornare lo stato da un server
-                    </script>
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        ### componentWillReceiveProps(nextProps)
-
-                        Chiamato ad ogni **modifica delle propietà esterne**.
-
-                        N.B: Questo metodo viene usato per eventuali trasformazioni delle propietà.
-                    </script>
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        #### shouldComponentUpdate(nextProps,nextState)
-
-                        Viene chiamata **prima di ogni rendering** ossia quando
-                        il componente riceve nuove propietà o
-                        viene modificato lo stato.
-
-
-                        Se questa funzione ritorna false,
-                        la fase di rendering viene saltata.
-                    </script>
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        #### componentWillUpdate(nextProps,nextState)
-
-                        Chiamata **prima di ogni rendering** se shouldComponentUpdate ritorna "true".
-                    </script>
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        #### componentDidUpdate(prevProps,prevState)
-
-                        Chiamata **subito dopo il rendering** .
-                    </script>
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        ### componentWillUnmount()
-
-                        Chiamata **prima che un componente venga rimosso** dal
-                        DOM. In questa fase di solito si rimuovono eventuali
-                        ascoltatori associati o si fa il destroy dei plugin.
-                    </script>
-                </section>
-                <section data-markdown>
-                    <script type="text/template">
-                        Esempio con plugin jQuery: SLIDER???
-                    </script>
-                </section>
-
-                <section data-markdown>
-                    <script type="text/template">
-                        ## jQuery: Limiti
-                        ### (o meglio: limiti dei programmatori jQuery)
-                        - NON SERVE ESSERE DEI PROGRAMMATORI PER USARE JQUERY
-                        - Codice poco strutturato (Spaghetti Code)
-                        - Tendenza ad abusare dei Plugin
-                        - Limitato ad un utilizzo prevalentemente "grafico" di Javascript
+                        #ES5
+                        - Variabili definite con la parola chiave "var"
+                        - Scope "Visibilità" della variabile relativa alla funzione in cui viene definita o globale se fuori da una funzione.
+                        - Antipattern: omettere l'uso di "var"
 
                         Note:
-                        **Io sono uno dei programmatori che ha usato per anni jQuery senza sapere nulla di Javascript**
+                        Esempio definizione variabile nello scope globale e dentro un IIFE, mostrare che non si accede ad una variabile definita in un IIFE
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES6
+                        - Variabili definite con la parola chiave "var", "let", "const"
+                        -  "let" permette di definire "variabili di blocco"
+                        -  "const" definisce una constante
+                        - **decostructing**
+                        - parametri funzioni con **valori di default**
 
-                        quando ho iniziato a fare web mi interessava molto di più l aspetto grafico rispetto a quello di programmazione (parlo di php)
+                        Note:
+                        Esempio definizione variabile con \"let\" in un if e dentro un ciclo for.
+                        Definizione di constante con \"const\".
+                    </script>
+                </section>
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #Funzioni
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES5
+                        - Definire una funzione con la keywork **function**
+                        - Il valore di **this** dipende dal contesto.
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES6
+                        - Definire una funzione con la keywork "function" o come **arrow function**
+                        - Il valore di **this** in un arrow function è quello dell' oggetto corrente
+                    </script>
+                </section>
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #Oggetti
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES5
+                        - Un oggetto è definito come {chiave: valore} in cui la chiave è una **Stringa**
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES6
+                        - possibilità di definire un Prototype per estendere altri oggetti (**\_\_proto__** e **super**)
+                        - sintassi migliorata per funzioni e autoassegnamenti
+                        - nomi delle proprietà dinamici
                     </script>
                 </section>
 
                 <section class="title-slide" data-background="#fd7c5b" data-markdown>
                     <script type="text/template">
-                        #Pattern Strutturali
+                        #Classi
+                    </script>
+                </section>
 
-                        note:
-                        Cos è un pattern strutturale?
-                        Codice organizzato in moduli atomici con funzionalità indipendenti.
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES5
+                        - Le classi vanno definite con una **Costructor Function**
+                        - Ereditarietà macchinosa.
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES6
+                        - Introduzione delle keyword **"class","extends","static"**,...
+                        - Programmazione OO più simile ad altri linguaggi, dettagli implementativi nascosti.
+                        - **Getter e Setter**
                     </script>
                 </section>
 
                 <section class="title-slide" data-background="#fd7c5b" data-markdown>
                     <script type="text/template">
-                        ##Pattern MVC
+                        #Promises
                     </script>
                 </section>
-
-                <section>
-                    <img src="img/mvc.png" height="667" width="929" alt="">
-                    <aside class="notes">
-                        Esempio Backend: Router -> Controller/Action -> Model (DB) -> View HTML
-
-                        Separazione delle competenze in moduli
-                    </aside>
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES5
+                        - Esistono dei plugin per implementare le Promise in ES5
+                        - **jQuery Deferred** è una implementazione molto simile alle Promise disponibile con jQuery.
+                    </script>
                 </section>
-
-
-                <section>
-                    <h2 class="color-blue">Model</h2>
-                    <ul>
-                        <li>
-                            Dati: <strong>dominio</strong> dell'applicazione
-                        </li>
-                        <li>
-                            Esempio Spotify: <strong>Track, Artist, Genre, Playlist</strong>
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2 class="color-red">View</h2>
-                    <ul>
-                        <li>
-                            <strong>Iterfaccia utente: markup e template</strong>
-                        </li>
-                        <li>
-                            Generalmente <strong>rappresentano graficamente i Modelli</strong>.
-                            Esempio Spotify: la Track è rappresentata come elemento &lt;li&gt;&lt;/li&gt;.
-                        </li>
-                        <li>Quando il modello cambia, l'interfaccia si aggiorna di conseguenza</li>
-                        <li>Un modello può avere più Viste</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2 class="color-green">Controller</h2>
-                    <ul>
-                        <li>
-                            <strong>"ascoltano"</strong> l'interfaccia utente e aggiornano il Model
-                        </li>
-                        <li>
-                            Esempio Spotify: <strong>Clicco play e setto lo stato di Track "isPlaying" a true</strong>
-                        </li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>Javascript e MVC</h2>
-                    <p>Ci sono diversi framework Javascript che sviluppano il pattern MVC in modi diversi; alcuni come Backbone e React integrano View e Controller insieme, altri, come Angular, favoriscono il forte accoppiamento tra View e Model.</p>
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES6
+                        - **return new Promise((resolve, reject) => {})**
+                    </script>
                 </section>
 
                 <section class="title-slide" data-background="#fd7c5b" data-markdown>
                     <script type="text/template">
-                        #Backbone.js
+                        #Concatenare stringhe
                     </script>
                 </section>
 
-                <section>
-                    <h2>Introduzione</h2>
-                    <p>"Backbone.js is a lightweight JavaScript library that adds <strong>structure to your client-side code</strong>. It makes it easy to manage and decouple concerns in your application, leaving you with code that is <strong>more maintainable</strong> in the long term.
-
-Developers commonly use libraries like Backbone.js to create <strong>single-page applications</strong> (SPAs). SPAs are web applications that load into the browser and then react to data changes on the client side without requiring complete page refreshes from the server."</p>
-<p><q cite="http://addyosmani.github.io/backbone-fundamentals/#what-is-mvc">(Addy Osmani - Developing Backbone.js Application)</q></p>
-
-                    <aside class="notes">
-                        Strutturare il codice JS
-                        Codice più mantenibile nel lungo termine
-                        Ideale per applicazioni web e siti one-page.
-                    </aside>
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES5
+                        - La concatenazione utilizza l'operatore **+**
+                    </script>
                 </section>
-
-                <section>
-                    <h2 class="color-blue">Model:</h2>
-                    <h3 class="color-black"><u>Backbone.Model</u> e <u>Backbone.Collection</u></h3>
-                </section>
-                <section>
-                <section>
-                    <h2 class="color-blue">Definire un nuovo Model</h2>
-                    <pre><code data-trim contenteditable>
-//create a Song Model
-var Song = Backbone.Model.extend({
-    defaults: {
-        title: '',
-        duration: 0,
-        isPlaying: false,
-        artist: '',
-        album: ''
-    },
-    initialize: function() {
-        //this is something like the contructor,
-        //is called when a new Song is created
-    }
-});
-//create a new Song
-var noWomanNoCry = new Song({
-    title: 'No Woman, No Cry',
-    duration: 210, //seconds
-    artist: 'Bob Marley',
-    album: 'Natty Dread'
-})
-
-                    </code></pre>
-                </section>
-                <section>
-                    <h2 class="color-blue">Model Getters</h2>
-                    <pre><code data-trim contenteditable>
-//getters for every Song property
-noWomanNoCry.get('title');
-//get a JSON representation of model attributes
-noWomanNoCry.toJSON()
-                    </code></pre>
-                </section>
-                <section>
-                    <h2 class="color-blue">Model Setters</h2>
-                    <pre><code data-trim contenteditable>
-//set a property
-noWomanNoCry.set('title','No woman, no cry (Radio edit)');
-noWomanNoCry.set('duration',125);
-//set multiple property
-noWomanNoCtry.set({
-    'title': 'No woman, no cry (Radio edit)',
-    'duration': 125
-})
-                    </code></pre>
-                </section>
-                <section>
-                    <h2 class="color-blue">Model Events</h2>
-                    <pre><code data-trim contenteditable>
-//every time we change an attribute a change event is triggered by the model
-noWomanNoCry.on('change',callback);
-
-//we can also listen for changes to a particular attribute
-noWomanNoCry.on('change:duration',callback);
-
-//we can listen for changes in all models when we first define the Model
-var Album = Backbone.Model.extend({
-    defaults: { ... },
-    initialize: function() {
-        this.on('change', function(e) {
-            console.log(e.changed);
-        })
-    }
-})
-                    </code></pre>
-                </section>
-                <section>
-                    <h2 class="color-blue">Model Validation</h2>
-                    <pre><code data-trim contenteditable>
-var Album = Backbone.Model.extend({
-    defaults: {
-        title: '',
-        songs: []
-    },
-    validate: function(attrs) {
-        if(attrs.title.length > 50) {
-            return 'Album must have a title within 50 chars!';
-        }
-    },
-    initialize: function() {
-        this.on('invalid', function(model,error){
-            console.log(error);
-        })
-    }
-})
-
-var a = new Album();
-a.set({'title','asdadkakdahjkdhakjdh...'},{validate:true});
-// a.validationError contains "Album must have a title within 50 chars!"
-                    </code></pre>
-                    <p>Il metodo validate viene chiamato quando settiamo un attributo specificando {validate:true} o quando viene chiamato il metodo "save" del modello.</p>
-                </section>
-                </section>
-                <section>
-                <section>
-                    <h2 class="color-blue">Definire una Collection</h2>
-                    <p>Una collection è un insieme di Modelli di un determinato tipo</p>
-                    <pre><code data-trim>
-var SongsCollection = Backbone.Collection.extend({
-    model: Song
-})
-                    </code></pre>
-                </section>
-                <section>
-                    <h2 class="color-blue">Modificare una Collection</h2>
-                    <pre><code data-trim>
-var novemberRain = new Song({ id:1, title: 'November Rain', artist: "Guns 'n' Roses" });
-var piccolaKetty = new Song({ id:2, title: 'Piccola Ketty', artist: "The Pooh"});
-var stan = new Song({ id:3, title: 'Stan', artist: "Eminem"});
-
-var songs = new SongsCollection([novemberRain,piccolaKetty]);
-
-songs.remove(piccolaKetty);
-songs.add(stan);
-
-//create implicit song
-songs.add({
-    id:25,
-    title: 'Pretty Fly',
-    artist:'The Offspring'
-})
-
-console.log(songs.length); //return 3
-                    </code></pre>
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES6
+                        - Utilizzando il carattere '`' è possibile definire una **template string**
+                        - Una **template string** può essere **multiline** e utilizzare dei **placeholder per le variabili** invece di concatenarle con il '+'
+                    </script>
                 </section>
 
 
-                <section>
-                    <h2 class="color-blue">Recuperare un Model da una Collection</h2>
-                    <pre><code data-trim>
-songs.get(3); //return piccolaKetty model
-                    </code></pre>
+
+                <section class="title-slide" data-background="#fd7c5b" data-markdown>
+                    <script type="text/template">
+                        #Strutture Dati
+                    </script>
                 </section>
 
-                <section>
-                    <h2 class="color-blue">Eventi Collections</h2>
-                    <pre><code data-trim>
-//called every time a model is added
-songs.on('add', function(song) {
-    console.log(song.get('title'));
-});
-
-//every time a model is removed
-songs.on('remove', function(song) {
-    console.log(song.get('title'));
-})
-
-//every time a model change his "title"
-songs.on('change:title', function(song) {
-    console.log(song.get('title'));
-})
-                    </code></pre>
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES5
+                        - Array e Oggetti
+                    </script>
                 </section>
-
-                <section>
-                    <h2 class="color-blue">Underscore utilities</h2>
-                    <pre><code data-trim>
-//sort a collection
-var songsSortedByTitle = songs.sortBy(function(song){
-    return song.get('title').toLowerCase();
-});
-
-//extract a specific attribute
-var artist = songs.pluck('artist');
-
-//filter
-var songsThatLastMoreThanOneMinute = songs.filter(
-    function(song) {
-        return song.duration > 60;
-    }
-)
-                    </code></pre>
+                <section data-markdown>
+                    <script type="text/template">
+                        #ES6
+                        - **Typed Array**, **Set**, **Map**, **WeakSet**, **WeakMap**
+                    </script>
                 </section>
-                <section>
-                    <h4 class="color-blue">Recuperare modelli da un Backend REST</h4>
-                    <pre><code data-trim>
-var Songs = Backbone.Collection.extend({
-    model: Song,
-    url: '/songs'
-});
-
-var songs = new Songs();
-songs.fetch();
-//fetch send an http GET request to /songs and populate the collection creating models from json server response.
-                    </code></pre>
-                </section>
-                <section>
-                    <h4 class="color-blue">Salvare modelli su un Backend REST</h4>
-                    <pre><code data-trim>
-var song = songs.get(1); //get Song from collection with ID 1
-
-song.set('title','Updated Title');
-song.save(); // calling save on a model sends an http PUT request to /songs/1
-
-songs.create({'title':'Mother','artist':'Pink Floyd', 'duration': 478 });
-//calling create on a collection sends an http POST request to /songs
-
-                    </code></pre>
-                </section>
-                </section>
-
-
-				<!-- Example of nested vertical slides -->
-				<section>
-					<section>
-						<h2>Underscore ( _ )</h2>
-                        <p>Underscore (_) è una libreria a cui Backbone si appoggia.</p>
-                        <p>Fornisce una serie di utility per la <strong>"programmazione funzionale"</strong> e un micro <strong>"template engine"</strong>.</p>
-					</section>
-					<section>
-						<h2>_.template</h2>
-                        <pre><code data-trim contenteditable>
-//HTML
-<script type="text/template" id="song-status">
-    <p>You are currently listen to <%= title %> from the album <%= album %></p>
-</script>
-
-//JS
-
-//cache the template function
-var tmplFunction = _.template($("#song-status").html());
-
-//replace the placeholder of template with the object property
-var generatedHTML = tmplFunction({title:'No woman, no cry', album:'Natty Dread'});
-
-//inject the modified html into the page
-$(...).html(generatedHTML);
-
-// generatedHTML = You are currently listen to No woman, no cry from the album Natty Dread
-                        </code></pre>
-					</section>
-				</section>
-                <section>
-                <section>
-                    <h2 class="color-red">Definire una View</h2>
-                    <p>Nuovo elemento, non esistente nel DOM.</p>
-                    <pre><code data-trim>
-var SongView = Backbone.View.extend({
-    ...
-});
-                    </code></pre>
-                </section>
-                <section>
-                    <h2 class="color-red">Propietà elemento Contenitore</h2>
-                    <pre><code data-trim>
-tagName: 'li', //default is div
-className: 'song' //optional
-id: '#song-id' //optional
-                    </code></pre>
-                    <pre><code data-trim >
-<li class="song" id="song-id"></li>
-                        </code></pre>
-                </section>
-                <section>
-                    <h2 class="color-red">Costruttore</h2>
-                    <pre><code data-trim contenteditable>
-initialize: function(options) {
-    this.options = options || {};
-    this.model.bind('change', _.bind(this.render,this));
-}
-                    </code></pre>
-                </section>
-                <section>
-                    <h2 class="color-red">Azioni della view</h2>
-                    <pre><code data-trim contenteditable>
-events: {
-    'click .play': 'playTrack',
-    'click .stop': 'stopTrack'
-},
-playTrack: function() {
-    // play track
-},
-stopTrack: function() {
-    // stop track
-}
-                    </code></pre>
-                    <p>Sostituisce</p>
-                    <pre><code data-trim contenteditable>
-$('li').delegate('.play','click', function(){...});
-                    </code></pre>
-                </section>
-                <section>
-                    <h2 class="color-red">Rendering</h2>
-                    <pre><code data-trim contenteditable>
-//cache template function
-tmpl: _.template($('#tmpl-song').html()),
-render: function() {
-    //this.$el is created by Backbone using tagName, className and id
-    this.$el.html(
-        this.tmpl(
-            this.model.toJSON()
-        )
-    );
-    return this;
-}
-                    </code></pre>
-                    <p>Ad ogni view viene generalmente associato un "model"; la View mostra all'utente lo stato del Model attraverso la funzione di rendering.</p>
-                </section>
-                <section>
-                    <h2 class="color-red">Inizializzare la View</h2>
-                    <pre><code data-trim contenteditable>
-var songView = new SongView();
-
-console.log(songView.el) // <li class='song'></li>
-
-var songView2 = new SongView({ model: noWomanNoCrySong });
-songView2.render();
-console.log(songView2.el) // <li class='song'>NoWomanNoCry - Natty Dread <span class="play"></span><span class="pause"></span></li>
-                    </code></pre>
-                </section>
-                <section>
-                    <h2 class="color-red">Definire una View</h2>
-                    <p>Elemento esistente nel DOM.</p>
-                    <pre><code>
-<body>
-    <div class="player">
-        <button class="play"></button>
-        <button class="next"></button>
-        <button class="prev"></button>
-    </div>
-</body>
-                        </code></pre>
-                </section>
-                <section>
-                    <h2 class="color-red">Definire una View</h2>
-                    <p>Elemento esistente nel DOM.</p>
-                    <pre><code data-trim contenteditable>
-var PlayerView = Backbone.View.extend({
-    'el': '.player',
-    events: {
-        'click .play': 'playTrack',
-        'click .next': 'nextTrack',
-        'click .prev': 'prevTrack'
-    },
-    playTrack: function() {
-        ...
-    },
-    nextTrack: function() {
-        ...
-    },
-    prevTrack: function() {
-        ...
-    }
-})
-                        </code></pre>
-                </section>
-                <section>
-                    <h2 class="color-red">Alternativa</h2>
-                    <pre><code data-trim contenteditable>
-var playerView = new PlayerView();
-
-// el can also be setted when creating the view
-
-var playerView = new PlayerView({el: $('.player')})
-                        </code></pre>
-                </section>
-                </section>
-
-                <section>
-                <section>
-                    <h2>Definire un Router</h2>
-                    <pre><code data-trim contenteditable>
-var SpotifyRouter = Backbone.Router.extend({
-    routes: {
-        'songs': 'showSongsList', // http://mysite.it/#songs -> call showSontsList
-        'songs/:id': 'showSongDetail',  // http://mysite.it/#song/5 -> call showSongDetail
-    },
-    initialize: function() {
-
-    },
-    showSongsList: function() {
-        //create the view
-        new SongsView({collection: songs });
-    },
-    showSongDetail: function(id) {
-        //create the view
-        new SongDetailView({ model: songs.get(id) });
-    }
-});
-
-var spotifyRouter = new SpotifyRouter();
-Backbone.history.start();
-                    </code></pre>
-                    <p>Creare delle url lato client.</p>
-                </section>
-                <section>
-                    <h4>Usare il metodo "navigate" per navigare tra le rotte</h4>
-                    <pre><code data-trim contenteditable>
-spotifyRouter.navigate('songs/2', { trigger: true });
-//without using trigger true, the state change but the url remains the same
-                    </code></pre>
-                </section>
-                <section>
-                    <h2>Evento 'route'</h2>
-                    <pre><code data-trim contenteditable>
-//route event is triggered every time the route change
-sporifyRouter.on('route', function(name,args) {
-    ...
-})
-                    </code></pre>
-                </section>
-                <section>
-                    <h2>Abilitare il PushState</h2>
-                    <pre><code>
-Backbone.history.start({ pushState: true });
-$(document).on('click', 'a:not([data-bypass])', function (evt) {
-
-    var href = $(this).attr('href');
-    var protocol = this.protocol + '//';
-
-    if (href.slice(protocol.length) !== protocol) {
-      evt.preventDefault();
-      app.router.navigate(href, true);
-    }
-});
-                    </code></pre>
-                </section>
-                </section>
-
-				<section data-background="https://media.giphy.com/media/jYAGkoghdmD9S/giphy.gif">
-				</section>
 
 
 			</div>

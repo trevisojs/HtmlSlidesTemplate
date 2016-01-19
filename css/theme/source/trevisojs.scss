@@ -47,6 +47,9 @@ $heading4Size: 1.0em;
 
 $headingLineHeight: 1.8;
 
+.circular {
+    border-radius: 50%;
+}
 
 .reveal .slides > section {
     &.title-slide {
@@ -57,6 +60,12 @@ $headingLineHeight: 1.8;
         }
         h2 {
             color: #fff;
+        }
+
+    }
+    &.title-slide-white {
+        h1 {
+            color: #333;
         }
     }
     img {
