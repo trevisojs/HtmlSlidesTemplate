@@ -3,7 +3,6 @@
  *
  * Copyright (C) 2015 Hakim El Hattab, http://hakim.se
  */
-@import url(../../lib/font/minecraft/minecraft.css);
 .circular {
   border-radius: 50%; }
 
@@ -11,7 +10,9 @@
   background-color: transparent; }
   .reveal .slides > section.title-slide h1 {
     color: #fff;
-    font-family: "Minecraft Regular", Helvetica, sans-serif; }
+    line-height: 1.2em;
+    text-shadow: -5px 5px 0 black;
+    font-family: "Raleway", Helvetica, sans-serif; }
   .reveal .slides > section.title-slide h2 {
     color: #fff; }
 
@@ -73,13 +74,13 @@ body {
 .reveal h5,
 .reveal h6 {
   margin: 0 0 20px 0;
-  color: #fd7c5b;
+  color: #c62f2f;
   font-family: "Source Sans Pro", Helvetica, sans-serif;
   font-weight: 600;
   line-height: 1.8;
   letter-spacing: normal;
   text-transform: none;
-  text-shadow: none;
+  text-shadow: 5px 5px 0 black;
   word-wrap: break-word; }
 
 .reveal h1 {

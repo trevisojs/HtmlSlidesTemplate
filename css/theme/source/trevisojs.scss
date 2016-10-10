@@ -11,26 +11,22 @@
 // ---------------------------------------------
 
 
-// Include theme-specific fonts
-@import url(../../lib/font/minecraft/minecraft.css);
-
-
 // Override theme settings (see ../template/settings.scss)
 $backgroundColor: #fff;
 
 $mainColor: #333;
-$headingColor: #fd7c5b;
+$headingColor: #c62f2f;
 $errorColor: #ff3e3e;
 $successColor: #3eff74;
-
 $mainFontSize: 38px;
 $mainFont: 'Source Sans Pro', Helvetica, sans-serif;
 $headingFont: 'Source Sans Pro', Helvetica, sans-serif;
-$slideTitleFont: 'Minecraft Regular', Helvetica, sans-serif;
-$headingTextShadow: none;
+$slideTitleFont: 'Raleway', Helvetica, sans-serif;
+$headingTextShadow: 5px 5px 0 black;
 $headingLetterSpacing: normal;
 $headingTextTransform: none;
 $headingFontWeight: 600;
+$headingLineHeight: 1.2em;
 $linkColor: #8984ed;
 $linkColorHover: lighten( $linkColor, 15% );
 $selectionBackgroundColor: lighten( $linkColor, 25% );
@@ -56,6 +52,8 @@ $headingLineHeight: 1.8;
         background-color: transparent;
         h1 {
             color: #fff;
+            line-height: 1.2em;
+            text-shadow: -5px 5px 0 black;
             font-family: $slideTitleFont;
         }
         h2 {
